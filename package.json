@@ -1,0 +1,1 @@
+{"name":"fetar-allam-booking-simulator","private":true,"type":"module","scripts":{"test":"node --test test/model.test.js","start":"node serve.js"}}

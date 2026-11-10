@@ -1,0 +1,4 @@
+import http from 'node:http';import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}let target=file;try{if(fs.statSync(target).isDirectory())target=path.join(target,'index.html');const content=fs.readFileSync(target);res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css','.png':'image/png'})[path.extname(target)]||'application/octet-stream');res.end(content);}catch{res.writeHead(404).end('Not found');}});
+server.listen(8765,'127.0.0.1',()=>console.log('Local preview: http://127.0.0.1:8765'));
