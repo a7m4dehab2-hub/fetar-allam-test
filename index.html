@@ -1,8 +1,33 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فطار علام — Booking practice</title><link rel="stylesheet" href="style.css"><link rel="icon" href="icon.png"></head>
-<body><header><a class="brand" href="./"><img src="icon.png" alt=""><span lang="ar">فطار علام<small>BOOKING PRACTICE</small></span></a><span class="demo">SIMULATOR · NO REAL RESERVATIONS</span></header>
-<main><section class="intro"><div><span class="eyebrow">YOUR PRACTICE LESSON</span><h1 id="course-name">Abdomen • Lesson groups</h1><p id="course-window">Preparing countdown…</p></div><div class="clock"><b id="clock"></b><span>Cairo time</span></div></section>
-<div class="notice">A separate test environment for the Android app. It uses a demo account automatically. Never enter your real password here.</div>
-<div class="columns"><section><div class="section-title"><h2>Lesson groups</h2><span id="opening-label" class="pill">Scheduled</span></div><div id="flash" hidden role="status"></div><div id="slots" class="slots"></div><p id="footnote" class="muted"></p></section>
-<aside><section class="control"><span class="eyebrow">TEST CONTROLS</span><h2>Set up your next run</h2><label>Open booking in <select id="delay"><option value="30">30 seconds</option><option value="60" selected>60 seconds</option><option value="120">2 minutes</option><option value="300">5 minutes</option></select></label><label>Simulated response delay <select id="latency"><option value="0">Instant</option><option value="100" selected>100 ms</option><option value="500">500 ms</option></select></label><label class="check"><input type="checkbox" id="first-full"> Fill the first listed group at opening</label><label class="check"><input type="checkbox" id="rate-limit"> Return rate limit on the next booking request</label><button id="reset" class="primary">Reset &amp; start countdown</button><p class="muted">Reset before choosing your groups in the app. To run again, reopen this link in the app after resetting.</p></section>
-<section class="control"><span class="eyebrow">DEMO ACCOUNT</span><h2>My reservation</h2><p id="my-booking">No seat booked yet.</p><p class="muted">One lesson group per account. Stored only in this browser or app.</p></section><section class="control"><h2>Try it with the APK</h2><p>Paste this GitHub Pages URL into the app. Choose your first and second times, then arm booking and leave the app open.</p><p class="muted">The simulator reproduces the public page’s groups, clock and booking responses. Requests here are simulated locally, not sent to a shared booking server.</p></section></aside></div>
-<section class="requests"><div class="section-title"><h2>Booking request log</h2><span id="count" class="pill">0 attempts</span></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Group</th><th>Result</th><th>Relative to opening</th></tr></thead><tbody id="log"></tbody></table></div></section></main><footer>Independent testing tool · Not affiliated with the original booking service</footer><script type="module" src="js/course.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b36">
+  <title>فطار علام · Screen-off test</title>
+  <style>
+    :root{font:16px/1.55 system-ui,sans-serif;color:#183b34;background:#edf4ef}
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px;min-height:100vh;display:grid;place-items:center}
+    main{width:min(100%,480px);padding:28px;background:white;border:1px solid #d0ded5;border-radius:20px}
+    h1{font-size:clamp(24px,6vw,32px);line-height:1.15;margin:0 0 14px}
+    button{width:100%;padding:14px;border:0;border-radius:10px;background:#155b48;color:white;font:inherit;font-weight:700;cursor:pointer}
+    button:focus-visible{outline:3px solid #dc9147;outline-offset:3px}
+    #result{margin-top:18px;padding:12px;border-radius:10px;background:#edf4ef;white-space:pre-line;overflow-wrap:anywhere}
+    #result[data-success="true"]{background:#d9f4df}
+    .slot{margin-top:15px;padding-top:12px;border-top:1px solid #d0ded5}
+    small{color:#516b61}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Screen-off request test</h1>
+  <p>Open this page in فطار علام v8. Start the test, then use the app’s <strong>Choose group</strong> control to arm <strong>Test request</strong>.</p>
+  <button id="start" type="button">Start 90-second test</button>
+  <div id="result" role="status" aria-live="polite">Ready to start.</div>
+  <article class="slot" data-slot-id="slt_screenoff"><span class="slot-time">Test request</span></article>
+  <p><small>After the booking notification appears, lock the phone. Unlock after the countdown and compare the recorded request times with when it was locked.</small></p>
+</main>
+<script type="module" src="./course.js"></script>
+</body>
+</html>
